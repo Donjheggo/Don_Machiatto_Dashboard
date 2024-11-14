@@ -9,12 +9,12 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      orders: {
+      order_items: {
         Row: {
           created_at: string
           id: string
-          name: string
-          order_number: number
+          order_id: string
+          price: number
           product_id: string
           quantity: number
           size: Database["public"]["Enums"]["SIZES"]
@@ -22,8 +22,8 @@ export type Database = {
         Insert: {
           created_at?: string
           id?: string
-          name: string
-          order_number?: number
+          order_id?: string
+          price: number
           product_id?: string
           quantity: number
           size: Database["public"]["Enums"]["SIZES"]
@@ -31,21 +31,55 @@ export type Database = {
         Update: {
           created_at?: string
           id?: string
-          name?: string
-          order_number?: number
+          order_id?: string
+          price?: number
           product_id?: string
           quantity?: number
           size?: Database["public"]["Enums"]["SIZES"]
         }
         Relationships: [
           {
-            foreignKeyName: "orders_product_id_fkey"
+            foreignKeyName: "order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "order_items_product_id_fkey"
             columns: ["product_id"]
             isOneToOne: false
             referencedRelation: "products"
             referencedColumns: ["id"]
           },
         ]
+      }
+      orders: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          order_number: number
+          payment_method: Database["public"]["Enums"]["PAYMENT_METHOD"]
+          total_price: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          order_number?: number
+          payment_method: Database["public"]["Enums"]["PAYMENT_METHOD"]
+          total_price: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          order_number?: number
+          payment_method?: Database["public"]["Enums"]["PAYMENT_METHOD"]
+          total_price?: number
+        }
+        Relationships: []
       }
       products: {
         Row: {
@@ -103,6 +137,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
+      PAYMENT_METHOD: "GCASH" | "CASH"
       SIZES: "SMALL" | "MEDIUM" | "LARGE"
       USER_ROLE: "USER" | "ADMIN"
     }

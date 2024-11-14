@@ -1,6 +1,6 @@
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Armchair } from "lucide-react";
+import { Coffee } from "lucide-react";
 import { GetItemsByOrderId } from "@/lib/actions/orders";
 import { Tables } from "@/database.types";
 import { ScrollArea } from "../ui/scroll-area";
@@ -13,7 +13,7 @@ export default async function ItemsDialog({ order_id }: { order_id: string }) {
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="default" className="flex items-center">
-          <Armchair size={18} className="mr-2" /> View Items
+          <Coffee size={18} className="mr-2" /> View Items
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] max-h-[90vh] overflow-hidden">
@@ -33,7 +33,6 @@ export default async function ItemsDialog({ order_id }: { order_id: string }) {
                   <h1>X{item.quantity}</h1>
                 </div>
                 <h1>Price: ₱{item.price}</h1>
-                <h1>Shipping: ₱{item.shipping_fee}</h1>
               </div>
             ))}
           </div>

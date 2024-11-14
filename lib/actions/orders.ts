@@ -12,7 +12,7 @@ export async function GetOrders(
     const supabase = createClient();
     const query = supabase
       .from("orders")
-      .select(`*, product_id(*)`)
+      .select("*")
       .order("created_at", { ascending: true })
       .range((page - 1) * items_per_page, page * items_per_page - 1);
 
@@ -79,8 +79,10 @@ export async function DeleteOrder(order_id: string) {
     const { error } = await supabase.from("orders").delete().eq("id", order_id);
 
     if (error) {
+      console.log("Error ", error.message)
       return { error: error };
     }
+
     revalidatePath("/orders");
     return { error: "" };
   } catch (error) {
