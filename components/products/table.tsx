@@ -60,6 +60,8 @@ export default async function ProductsTable({
               <TableHead className="table-cell">Name</TableHead>
               <TableHead className="table-cell">Flavor</TableHead>
               <TableHead className="table-cell">Price</TableHead>
+              <TableHead className="table-cell">Quantity</TableHead>
+
               <TableHead>
                 <span className="sr-only">Actions</span>
               </TableHead>
@@ -85,6 +87,9 @@ export default async function ProductsTable({
                 </TableCell>
                 <TableCell>
                   <p className="font-normal">₱{item.price}</p>
+                </TableCell>
+                <TableCell>
+                  <p className="font-normal">{item.quantity}</p>
                 </TableCell>
                 <TableCell>
                   <DropdownMenu>

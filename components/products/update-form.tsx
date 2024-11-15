@@ -135,6 +135,18 @@ export default function UpdateProductForm({ item }: { item: ProductsT }) {
           />
         </div>
 
+        <div className="grid gap-2">
+          <Label htmlFor="quantity">Quantity</Label>
+          <Input
+            name="quantity"
+            id="quantity"
+            type="number"
+            placeholder=""
+            defaultValue={item.quantity}
+            required
+          />
+        </div>
+
         <Button type="submit" disabled={loading}>
           {loading ? <Loader className="animate-spin" /> : "Save"}
         </Button>

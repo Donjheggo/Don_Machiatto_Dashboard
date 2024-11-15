@@ -112,6 +112,19 @@ export default function CreateProductDialog() {
                 required
               />
             </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="quantity" className="text-right">
+                Quantity
+              </Label>
+              <Input
+                name="quantity"
+                id="quantity"
+                type="number"
+                placeholder=""
+                className="col-span-3"
+                required
+              />
+            </div>
           </div>
           <DialogFooter>
             <DialogClose asChild>

@@ -84,6 +84,7 @@ export async function CreateProduct(formData: FormData) {
         name: formData.get("name"),
         flavor: formData.get("flavor"),
         price: formData.get("price"),
+        quantity: formData.get("quantity"),
       })
       .select();
 
@@ -148,6 +149,7 @@ export async function UpdateProduct(formData: FormData) {
         name: formData.get("name"),
         flavor: formData.get("flavor"),
         price: formData.get("price"),
+        quantity: formData.get("quantity"),
       })
       .eq("id", formData.get("id"))
       .select();
